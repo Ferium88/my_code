@@ -14,9 +14,9 @@ def get_url():
         response = requests.get(url, headers=headers)
         soup = BeautifulSoup(response.content, features="lxml")
 
-        model = soup.find("div", class_="grid grid-cols-1 gap-4 sm:grid-cols-3")
-        model2 = model.findAll("div", class_="w-full rounded border")
-        for i in model2:
+        model = soup.find("div", class_="grid grid-cols-1 gap-4 sm:grid-cols-3").findAll("div", class_="w-full rounded border")
+        # model2 = model.findAll("div", class_="w-full rounded border")
+        for i in model:
             card_url = "https://scrapingclub.com" + i.find("a").get("href")
             yield card_url
 
